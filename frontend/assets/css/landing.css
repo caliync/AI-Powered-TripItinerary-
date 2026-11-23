@@ -1,0 +1,1684 @@
+/* Home page sections (About us, Locals, Travelers, Contact), ported from Alli's homepage
+   draft of Nov 20, 2026. Everything is scoped under .lw-home so these colors and class names
+   don't touch the rest of the site. Tokens here are plain colors, unlike tokens.css. */
+
+.lw-home {
+  --font-display: "Lancelot", Georgia, serif;
+
+  /* brand: lake blue from the logo, mango as the warm accent */
+  --lake: #164e84;
+  --lake-bright: #2b6fb4;
+  --lake-deep: #103161;
+  --lake-soft: #e2ecf7;
+  --mango: #f09e30;
+  --mango-ink: #9a5800;
+  --mango-soft: #fdefd9;
+  --clay: #b5532f;
+  --clay-soft: #f8e4da;
+  --forest: #2c6a4c;
+  --forest-soft: #dff0e6;
+
+  --page: #eef2f6;
+  --band: #e5ebf2;
+  --surface: #ffffff;
+  --surface-2: #f5f8fb;
+  --line: #dde4ed;
+  --ink: #131d2c;
+  --ink-2: #3a4657;
+  --muted: #5a6779;
+  --header-bg: rgb(238 242 246 / 0.86);
+  --shadow-card: 0 1px 2px rgb(16 32 56 / 0.06), 0 8px 20px rgb(16 32 56 / 0.07);
+  --shadow-lift: 0 2px 4px rgb(16 32 56 / 0.06), 0 16px 32px rgb(16 32 56 / 0.12);
+  --shadow-float: 0 22px 44px rgb(16 32 56 / 0.2), 0 2px 4px rgb(16 32 56 / 0.06);
+  --focus: 0 0 0 3px rgb(240 158 48 / 0.6);
+}
+
+.dark .lw-home {
+  --lake: #6aa8ec;
+  --lake-bright: #2f74bd;
+  --lake-deep: #d9e8ff;
+  --lake-soft: rgb(106 168 236 / 0.15);
+  --mango-ink: #f6c37e;
+  --mango-soft: rgb(240 158 48 / 0.16);
+  --clay: #ec9573;
+  --clay-soft: rgb(236 149 115 / 0.15);
+  --forest: #74c79e;
+  --forest-soft: rgb(116 199 158 / 0.14);
+
+  --page: #0f141c;
+  --band: #141b25;
+  --surface: #19212c;
+  --surface-2: #202a37;
+  --line: #2a3544;
+  --ink: #eef3f8;
+  --ink-2: #c3cedb;
+  --muted: #98a6b8;
+  --header-bg: rgb(15 20 28 / 0.84);
+  --shadow-card: 0 1px 2px rgb(0 0 0 / 0.3), 0 8px 20px rgb(0 0 0 / 0.25);
+  --shadow-lift: 0 16px 32px rgb(0 0 0 / 0.45);
+  --shadow-float: 0 22px 44px rgb(0 0 0 / 0.55);
+}
+
+.lw-home {
+  background: var(--page);
+  color: var(--ink);
+}
+
+.lw-chrome {
+  display: contents;
+}
+
+.lw-home section[id] {
+  scroll-margin-top: 72px;
+}
+
+/* One color per kind of place, reused by cards, timeline stops and icons. */
+.lw-home .tone-lake {
+  --t: var(--lake);
+  --t-soft: var(--lake-soft);
+}
+.lw-home .tone-mango {
+  --t: var(--mango-ink);
+  --t-soft: var(--mango-soft);
+}
+.lw-home .tone-clay {
+  --t: var(--clay);
+  --t-soft: var(--clay-soft);
+}
+.lw-home .tone-forest {
+  --t: var(--forest);
+  --t-soft: var(--forest-soft);
+}
+.lw-home svg {
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.lw-home svg .tone {
+  fill: currentColor;
+  stroke: none;
+  opacity: 0.2;
+}
+/* ---------- header ---------- */
+
+.lw-home .site-header {
+  position: sticky;
+  top: env(safe-area-inset-top, 0px);
+  z-index: 30;
+  display: flex;
+  height: 64px;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 8px max(24px, calc((100vw - 1240px) / 2));
+  border-bottom: 1px solid var(--line);
+  background: var(--header-bg);
+  backdrop-filter: saturate(1.4) blur(12px);
+}
+
+.lw-home .brand {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  border-radius: 10px;
+  text-decoration: none;
+}
+
+.lw-home .brand-word {
+  padding-top: 3px;
+  font-family: var(--font-display);
+  font-size: 32px;
+  line-height: 1;
+  letter-spacing: -1px;
+  color: transparent;
+  background: linear-gradient(90deg, #356bde, #002066);
+  background-clip: text;
+  -webkit-background-clip: text;
+}
+
+.dark .lw-home .brand-word {
+  background-image: linear-gradient(90deg, #8fb8ff, #d9e8ff);
+}
+
+.lw-home .brand-mark {
+  display: block;
+  width: 58px;
+  height: 39px;
+}
+
+.lw-home .brand-mark img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 2px 2px rgb(0 32 102 / 0.18));
+}
+
+.dark .lw-home .brand-mark img {
+  filter: brightness(1.7) saturate(0.9);
+}
+
+.lw-home .desktop-nav {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-left: auto;
+}
+
+.lw-home .desktop-nav a,
+.lw-home .mobile-nav a {
+  position: relative;
+  border-radius: 999px;
+  padding: 8px 14px;
+  color: var(--lake-deep);
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 22.5px;
+  text-decoration: none;
+}
+
+.lw-home .desktop-nav a:hover,
+.lw-home .mobile-nav a:hover {
+  background: var(--lake-soft);
+}
+
+.lw-home .desktop-nav a[aria-current] {
+  color: var(--lake);
+  font-weight: 700;
+}
+
+.lw-home .desktop-nav a[aria-current]::after {
+  content: "";
+  position: absolute;
+  bottom: 1px;
+  left: 50%;
+  width: 18px;
+  height: 3px;
+  border-radius: 999px;
+  background: var(--mango);
+  transform: translateX(-50%);
+}
+
+.lw-home .header-actions {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.lw-home .icon-button {
+  display: grid;
+  width: 44px;
+  height: 44px;
+  cursor: pointer;
+  place-items: center;
+  border-radius: 999px;
+  color: var(--lake-deep);
+}
+
+.lw-home .icon-button:hover {
+  background: var(--lake-soft);
+}
+
+.lw-home .icon-button svg {
+  width: 20px;
+  height: 20px;
+}
+
+.dark .lw-home .icon-button[aria-pressed="true"] {
+  color: var(--mango);
+}
+
+.lw-home .menu-button {
+  display: none;
+}
+
+.lw-home .mobile-nav {
+  position: absolute;
+  top: calc(100% + 1px);
+  right: 0;
+  left: 0;
+  display: grid;
+  gap: 2px;
+  padding: 10px 14px 16px;
+  border-bottom: 1px solid var(--line);
+  background: var(--surface);
+  box-shadow: var(--shadow-card);
+}
+
+.lw-home .mobile-nav a {
+  padding: 12px 14px;
+  border-radius: 12px;
+  font-size: 16px;
+}
+
+.lw-home .mobile-nav a[aria-current] {
+  background: var(--lake-soft);
+  color: var(--lake);
+  font-weight: 700;
+}
+
+/* ---------- hero ---------- */
+
+.lw-home .hero {
+  position: relative;
+  display: flex;
+  height: clamp(560px, 78vh, 720px);
+  justify-content: center;
+  overflow: hidden;
+  background: #1d3346;
+}
+
+.lw-home .hero-photo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 62%;
+  filter: saturate(1.08) contrast(1.03);
+}
+
+/* Lake-tinted shade: darker at the top for the title, and at the bottom for the search bar. */
+.lw-home .hero-shade {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(180deg, rgb(10 30 54 / 0.6) 0%, rgb(10 30 54 / 0.2) 38%, rgb(10 30 54 / 0) 60%),
+    linear-gradient(0deg, rgb(10 30 54 / 0.5) 0%, rgb(10 30 54 / 0) 32%);
+}
+
+.lw-home .hero-copy {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 56px 24px 0;
+  color: white;
+  text-align: center;
+}
+
+.lw-home .hero-title {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.lw-home .hero-copy h1 {
+  font-family: var(--font-display);
+  font-size: clamp(44px, 6.9vw, 100px);
+  font-weight: 400;
+  line-height: 1.05;
+  text-shadow: 0 4px 18px rgb(0 0 0 / 0.3);
+}
+
+/* Your white rule, with a short mango dash in the middle. */
+.lw-home .title-rule {
+  position: relative;
+  display: block;
+  height: 3px;
+  margin: 14px 4% 0;
+  border-radius: 999px;
+  background: linear-gradient(90deg, rgb(255 255 255 / 0), white 18%, white 82%, rgb(255 255 255 / 0));
+  box-shadow: 0 3px 6px rgb(0 0 0 / 0.2);
+}
+
+.lw-home .title-rule i {
+  position: absolute;
+  top: -2px;
+  left: 50%;
+  width: 72px;
+  height: 7px;
+  border-radius: 999px;
+  background: var(--mango);
+  box-shadow: 0 2px 8px rgb(240 158 48 / 0.5);
+  transform: translateX(-50%);
+}
+
+.lw-home .hero-copy p {
+  max-width: 720px;
+  margin-top: 24px;
+  color: rgb(255 255 255 / 0.93);
+  font-size: 20px;
+  line-height: 1.55;
+  letter-spacing: 0.1px;
+  text-shadow: 0 2px 10px rgb(0 0 0 / 0.35);
+  text-wrap: balance;
+}
+
+/* ---------- planner ---------- */
+
+.lw-home .planner {
+  position: relative;
+  z-index: 10;
+  width: min(calc(100% - 48px), 1143px);
+  margin: -48px auto 0;
+}
+
+.lw-home .planner form {
+  display: flex;
+  align-items: stretch;
+  padding: 8px;
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  background: var(--surface);
+  box-shadow: var(--shadow-float);
+}
+
+.lw-home .field {
+  position: relative;
+  display: flex;
+  min-width: 0;
+  flex: 181 1 0;
+  flex-direction: column;
+  justify-content: center;
+  gap: 2px;
+  padding: 10px 20px;
+  border-radius: 14px;
+  cursor: text;
+}
+
+.lw-home .field + .field::before {
+  content: "";
+  position: absolute;
+  top: 14px;
+  bottom: 14px;
+  left: 0;
+  width: 1px;
+  background: var(--line);
+}
+
+.lw-home .field:hover {
+  background: var(--surface-2);
+}
+
+.lw-home .field:focus-within {
+  background: var(--surface-2);
+  box-shadow: inset 0 0 0 2px var(--lake);
+}
+
+.lw-home .field:focus-within::before,
+.lw-home .field:focus-within + .field::before,
+.lw-home .field:hover::before,
+.lw-home .field:hover + .field::before {
+  opacity: 0;
+}
+
+.lw-home .stay-field {
+  flex-grow: 289;
+}
+
+.lw-home .field > span {
+  color: var(--ink);
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 16px;
+  white-space: nowrap;
+}
+
+.lw-home .field input,
+.lw-home .field select {
+  width: 100%;
+  height: 24px;
+  min-width: 0;
+  appearance: none;
+  outline: none;
+  color: var(--ink-2);
+  background: transparent;
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 22px;
+  cursor: pointer;
+}
+
+.lw-home .field input::placeholder {
+  color: var(--muted);
+  opacity: 1;
+}
+
+.lw-home .field select:invalid {
+  color: var(--muted);
+}
+
+.lw-home .field input[type="date"]::-webkit-calendar-picker-indicator {
+  opacity: 0.55;
+  cursor: pointer;
+}
+
+.dark .lw-home .field input[type="date"]::-webkit-calendar-picker-indicator {
+  filter: invert(1);
+}
+
+.lw-home .field select {
+  padding-right: 22px;
+}
+
+.lw-home .field select option {
+  background: var(--surface);
+  color: var(--ink);
+}
+
+.lw-home .field-chevron {
+  position: absolute;
+  right: 18px;
+  bottom: 14px;
+  width: 16px;
+  height: 16px;
+  color: var(--muted);
+  pointer-events: none;
+}
+
+.lw-home .plan-button {
+  display: flex;
+  flex: 0 0 168px;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 56px;
+  margin-left: 8px;
+  cursor: pointer;
+  border-radius: 14px;
+  background: linear-gradient(180deg, #1d5f9e, #164e84);
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.18), 0 4px 10px rgb(22 78 132 / 0.25);
+  color: white;
+  font-size: 15.5px;
+  font-weight: 700;
+}
+
+.dark .lw-home .plan-button {
+  background: linear-gradient(180deg, #3780cc, #2b6fb4);
+}
+
+.lw-home .plan-button svg {
+  width: 18px;
+  height: 18px;
+  stroke-width: 2.2;
+}
+
+.lw-home .plan-button:hover {
+  background: linear-gradient(180deg, #17558f, #103f6c);
+  box-shadow: 0 10px 20px rgb(22 78 132 / 0.35);
+  transform: translateY(-1px);
+}
+
+.lw-home .plan-button:active {
+  transform: translateY(0);
+}
+
+.lw-home .form-status {
+  min-height: 20px;
+  margin-top: 10px;
+  padding-inline: 12px;
+  color: var(--lake);
+  font-size: 13.5px;
+  font-weight: 600;
+  text-align: right;
+}
+
+/* ---------- shared section heading ---------- */
+
+.lw-home .section-heading {
+  text-align: center;
+}
+
+.lw-home .section-heading h2,
+.lw-home .audience-copy h2,
+.lw-home .contact .section-heading h2 {
+  color: var(--ink);
+  font-size: clamp(32px, 3.4vw, 46px);
+  font-weight: 800;
+  line-height: 1.12;
+  letter-spacing: -0.8px;
+  text-wrap: balance;
+}
+
+.lw-home .section-heading p {
+  margin-top: 10px;
+  color: var(--muted);
+  font-size: clamp(17px, 1.6vw, 21px);
+  line-height: 1.45;
+}
+
+/* ---------- how it works ---------- */
+
+.lw-home .how-it-works {
+  padding: 96px 32px 108px;
+}
+
+.lw-home .steps {
+  display: grid;
+  width: min(100%, 1180px);
+  margin: 72px auto 0;
+  grid-template-columns: repeat(3, 1fr);
+  column-gap: 48px;
+  list-style: none;
+}
+
+.lw-home .step {
+  position: relative;
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.lw-home .step-visual {
+  position: relative;
+  z-index: 2;
+  display: grid;
+  width: 100px;
+  height: 100px;
+  place-items: center;
+  border: 1px solid rgb(22 78 132 / 0.1);
+  border-radius: 30px;
+  background: linear-gradient(150deg, var(--surface) 0%, var(--lake-soft) 100%);
+  box-shadow: var(--shadow-card);
+  color: var(--lake);
+}
+
+.dark .lw-home .step-visual {
+  border-color: var(--line);
+  background: linear-gradient(150deg, var(--surface-2), var(--surface));
+}
+
+.lw-home .step-visual svg {
+  width: 46px;
+  height: 46px;
+  stroke-width: 1.6;
+}
+
+.lw-home .step-number {
+  position: absolute;
+  top: -10px;
+  right: -10px;
+  display: grid;
+  width: 30px;
+  height: 30px;
+  place-items: center;
+  border: 3px solid var(--page);
+  border-radius: 999px;
+  background: var(--mango);
+  color: #2a1a03;
+  font-size: 13px;
+  font-weight: 800;
+}
+
+/* A dashed route between steps, like the loop in the logo. */
+.lw-home .step-connector {
+  position: absolute;
+  z-index: 1;
+  top: 22px;
+  left: calc(50% + 70px);
+  width: calc(100% - 140px + 48px);
+  height: 56px;
+  color: var(--lake);
+  opacity: 0.6;
+}
+
+.lw-home .step-connector path {
+  stroke-width: 2.2;
+  stroke-dasharray: 2 8;
+}
+
+.lw-home .step h4 {
+  margin-top: 28px;
+  color: var(--ink);
+  font-size: 21px;
+  font-weight: 700;
+  line-height: 1.4;
+  letter-spacing: -0.2px;
+}
+
+.lw-home .step > p {
+  max-width: 300px;
+  margin-top: 6px;
+  color: var(--ink-2);
+  font-size: 16px;
+  line-height: 1.55;
+}
+
+/* ---------- sample day card ---------- */
+
+.lw-home .text-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 32px;
+  padding: 11px 18px;
+  border: 1.5px solid var(--lake);
+  border-radius: 12px;
+  color: var(--lake);
+  font-size: 15.5px;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.lw-home .text-link:hover {
+  background: var(--lake);
+  color: white;
+}
+
+.dark .lw-home .text-link:hover {
+  color: #0f141c;
+}
+
+.lw-home .text-link svg {
+  width: 18px;
+  height: 18px;
+  stroke-width: 2.2;
+  transition: transform 180ms ease;
+}
+
+.lw-home .text-link:hover svg {
+  transform: translateX(3px);
+}
+
+.lw-home .day-card {
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  background: var(--surface);
+  box-shadow: var(--shadow-lift);
+}
+
+.lw-home .day-card header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 24px 26px 20px;
+  border-bottom: 1px solid var(--line);
+  background: linear-gradient(135deg, var(--lake-soft), transparent 70%);
+}
+
+.lw-home .day-tag {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 999px;
+  background: var(--mango-soft);
+  color: var(--mango-ink);
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.lw-home .day-card h3 {
+  margin-top: 10px;
+  color: var(--ink);
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: -0.3px;
+}
+
+.lw-home .day-card header p {
+  margin-top: 2px;
+  color: var(--muted);
+  font-size: 14px;
+}
+
+.lw-home .day-stats {
+  display: flex;
+  gap: 8px;
+}
+
+.lw-home .day-stats div {
+  min-width: 70px;
+  padding: 8px 12px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--surface);
+  text-align: center;
+}
+
+.lw-home .day-stats dt {
+  color: var(--muted);
+  font-size: 11.5px;
+  font-weight: 600;
+}
+
+.lw-home .day-stats dd {
+  color: var(--ink);
+  font-size: 17px;
+  font-weight: 800;
+}
+
+.lw-home .timeline {
+  padding: 12px 26px 22px;
+  list-style: none;
+}
+
+.lw-home .stop {
+  display: grid;
+  grid-template-columns: 70px 36px 1fr;
+  gap: 12px;
+  align-items: center;
+  padding: 6px 0;
+}
+
+.lw-home .stop time {
+  color: var(--ink);
+  font-size: 13.5px;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+}
+
+.lw-home .stop-icon {
+  display: grid;
+  width: 36px;
+  height: 36px;
+  place-items: center;
+  border-radius: 12px;
+  background: var(--t-soft);
+  color: var(--t);
+}
+
+.lw-home .stop-icon svg {
+  width: 20px;
+  height: 20px;
+}
+
+.lw-home .stop > div {
+  display: grid;
+}
+
+.lw-home .stop strong {
+  color: var(--ink);
+  font-size: 15px;
+  font-weight: 700;
+  line-height: 1.35;
+}
+
+.lw-home .stop span:not(.stop-icon) {
+  color: var(--muted);
+  font-size: 13px;
+}
+
+/* The leg between two stops sits on a dashed line under the stop icons. */
+.lw-home .leg {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-left: 99px;
+  padding: 6px 0 6px 22px;
+  border-left: 2px dashed var(--line);
+  color: var(--muted);
+  font-size: 12.5px;
+  font-weight: 600;
+}
+
+.lw-home .leg svg {
+  width: 15px;
+  height: 15px;
+}
+
+.lw-home .place-grid {
+  display: grid;
+  width: min(100%, 1180px);
+  margin: 56px auto 0;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  list-style: none;
+}
+
+.lw-home .place-card {
+  position: relative;
+  overflow: hidden;
+  padding: 26px 26px 24px;
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  background: var(--surface);
+  box-shadow: var(--shadow-card);
+  transition:
+    transform 200ms ease,
+    box-shadow 200ms ease;
+}
+
+.lw-home .place-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: 4px;
+  background: var(--t);
+  opacity: 0.85;
+}
+
+.lw-home .place-card:hover {
+  box-shadow: var(--shadow-lift);
+  transform: translateY(-3px);
+}
+
+.lw-home .place-icon {
+  display: grid;
+  width: 54px;
+  height: 54px;
+  place-items: center;
+  border-radius: 16px;
+  background: var(--t-soft);
+  color: var(--t);
+}
+
+.lw-home .place-icon svg {
+  width: 28px;
+  height: 28px;
+}
+
+.lw-home .place-card h4 {
+  margin-top: 18px;
+  color: var(--ink);
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.lw-home .place-card > p {
+  margin-top: 6px;
+  color: var(--ink-2);
+  font-size: 15px;
+  line-height: 1.55;
+}
+
+.lw-home .place-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 16px;
+  list-style: none;
+}
+
+.lw-home .place-tags li {
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: var(--surface-2);
+  border: 1px solid var(--line);
+  color: var(--ink-2);
+  font-size: 12.5px;
+  font-weight: 600;
+}
+
+/* ---------- contact ---------- */
+
+.lw-home .contact {
+  padding: 104px 32px;
+}
+
+.lw-home .contact-band {
+  position: relative;
+  display: flex;
+  overflow: hidden;
+  width: min(100%, 1180px);
+  margin: 0 auto;
+  align-items: center;
+  gap: 28px;
+  padding: 44px 48px;
+  border-radius: 28px;
+  background:
+    radial-gradient(120% 140% at 100% 0%, rgb(43 111 180 / 0.55), transparent 55%),
+    linear-gradient(120deg, #164e84, #0e365c);
+  box-shadow: var(--shadow-lift);
+  color: white;
+}
+
+.lw-home .contact-route {
+  position: absolute;
+  right: 220px;
+  bottom: -30px;
+  width: 420px;
+  height: 220px;
+  color: var(--mango);
+  opacity: 0.35;
+  pointer-events: none;
+}
+
+.lw-home .contact-route path {
+  stroke-width: 2.5;
+  stroke-dasharray: 3 10;
+}
+
+.lw-home .contact-route circle {
+  fill: currentColor;
+  stroke: none;
+}
+
+.lw-home .contact-icon {
+  position: relative;
+  display: grid;
+  width: 64px;
+  height: 64px;
+  flex: none;
+  place-items: center;
+  border: 1px solid rgb(255 255 255 / 0.2);
+  border-radius: 20px;
+  background: rgb(255 255 255 / 0.1);
+  color: var(--mango);
+}
+
+.lw-home .contact-icon svg {
+  width: 32px;
+  height: 32px;
+}
+
+.lw-home .contact-icon svg .tone {
+  opacity: 0.35;
+}
+
+.lw-home .contact-copy {
+  position: relative;
+  flex: 1;
+}
+
+.lw-home .contact-band h3 {
+  color: white;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  font-size: clamp(26px, 2.6vw, 34px);
+}
+
+.lw-home .contact-band p {
+  max-width: 560px;
+  margin-top: 8px;
+  color: rgb(255 255 255 / 0.85);
+  font-size: 17px;
+  line-height: 1.55;
+}
+
+.lw-home .contact-button {
+  position: relative;
+  display: inline-flex;
+  flex: none;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 15px 22px;
+  border-radius: 14px;
+  background: var(--mango);
+  box-shadow: 0 6px 16px rgb(240 158 48 / 0.35);
+  color: #2a1a03;
+  font-size: 15.5px;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.lw-home .contact-button svg {
+  width: 18px;
+  height: 18px;
+  stroke-width: 2.2;
+}
+
+.lw-home .contact-button:hover {
+  background: #f7b552;
+  transform: translateY(-1px);
+}
+
+/* ---------- footer ---------- */
+
+.lw-home .site-footer {
+  border-top: 1px solid var(--line);
+  padding: 32px max(24px, calc((100vw - 1240px) / 2));
+  background: var(--surface);
+}
+
+.lw-home .footer-inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px 32px;
+}
+
+.lw-home .brand-small .brand-word {
+  font-size: 24px;
+}
+
+.lw-home .brand-small .brand-mark {
+  width: 44px;
+  height: 30px;
+}
+
+.lw-home .site-footer nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 20px;
+}
+
+.lw-home .site-footer nav a {
+  border-radius: 6px;
+  color: var(--ink-2);
+  font-size: 14px;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.lw-home .site-footer nav a:hover {
+  color: var(--lake);
+}
+
+.lw-home .site-footer p {
+  color: var(--muted);
+  font-size: 13.5px;
+}
+
+/* ---------- about, locals, travelers: shared bits ---------- */
+
+.lw-home .sub-heading {
+  color: var(--ink);
+  font-size: clamp(22px, 2vw, 26px);
+  font-weight: 800;
+  letter-spacing: -0.3px;
+  text-align: center;
+}
+
+.lw-home .about-grid {
+  display: grid;
+  width: min(100%, 1180px);
+  margin: 0 auto;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
+  gap: 64px;
+  align-items: start;
+}
+
+.lw-home .about-intro h2 {
+  color: var(--ink);
+  font-size: clamp(32px, 3.4vw, 46px);
+  font-weight: 800;
+  line-height: 1.12;
+  letter-spacing: -0.8px;
+}
+
+.lw-home .about-intro p {
+  margin-top: 16px;
+  color: var(--ink-2);
+  font-size: 16.5px;
+  line-height: 1.7;
+}
+
+.lw-home .about-intro .about-lead {
+  margin-top: 18px;
+  color: var(--ink);
+  font-size: clamp(18px, 1.5vw, 20px);
+  font-weight: 500;
+  line-height: 1.55;
+}
+
+.lw-home .values-title {
+  color: var(--ink);
+  font-size: 20px;
+  font-weight: 800;
+  letter-spacing: -0.2px;
+}
+
+.lw-home .values {
+  display: grid;
+  margin-top: 18px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+  list-style: none;
+}
+
+.lw-home .value-card {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  padding: 22px 22px 24px;
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  background: var(--surface);
+  box-shadow: var(--shadow-card);
+}
+
+.lw-home .value-head {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.lw-home .value-icon {
+  display: grid;
+  width: 44px;
+  height: 44px;
+  flex: none;
+  place-items: center;
+  border-radius: 14px;
+  background: var(--t-soft);
+  color: var(--t);
+}
+
+.lw-home .value-icon svg {
+  width: 23px;
+  height: 23px;
+}
+
+.lw-home .value-card h4 {
+  color: var(--ink);
+  font-size: 17px;
+  font-weight: 700;
+  line-height: 1.3;
+}
+
+.lw-home .value-card p {
+  margin-top: 12px;
+  color: var(--ink-2);
+  font-size: 15px;
+  line-height: 1.55;
+}
+
+.lw-home .about > .sub-heading {
+  width: min(100%, 1180px);
+  margin-inline: auto;
+  padding-top: 56px;
+  border-top: 1px solid var(--line);
+}
+
+.lw-home .about .sub-heading {
+  margin-top: 64px;
+}
+
+.lw-home .about .steps {
+  margin-top: 48px;
+}
+
+.lw-home .about .section-heading p {
+  max-width: 760px;
+  margin-inline: auto;
+  text-wrap: balance;
+}
+
+.lw-home .sub-text {
+  margin-top: 8px;
+  color: var(--muted);
+  font-size: 17px;
+  text-align: center;
+}
+
+/* ---------- locals and travelers ---------- */
+
+.lw-home .audience-section {
+  padding: 104px 32px;
+  border-block: 1px solid var(--line);
+  background:
+    radial-gradient(70% 90% at 0% 0%, var(--t-soft), transparent 70%),
+    var(--band);
+}
+
+.lw-home .audience-section.travelers {
+  border-top: 0;
+  background:
+    radial-gradient(70% 60% at 100% 0%, var(--t-soft), transparent 70%),
+    var(--page);
+}
+
+.lw-home .audience-inner {
+  display: grid;
+  width: min(100%, 1180px);
+  margin: 0 auto;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 500px);
+  align-items: center;
+  gap: 72px;
+}
+
+.lw-home .audience-copy {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.lw-home .audience-icon {
+  display: grid;
+  width: 64px;
+  height: 64px;
+  place-items: center;
+  border-radius: 20px;
+  background: var(--t);
+  color: white;
+  box-shadow: 0 8px 18px color-mix(in srgb, var(--t) 35%, transparent);
+}
+
+.dark .lw-home .audience-icon {
+  color: #0f141c;
+}
+
+.lw-home .audience-icon svg {
+  width: 34px;
+  height: 34px;
+}
+
+.lw-home .audience-icon svg .tone {
+  opacity: 0.3;
+}
+
+.lw-home .audience-copy h2 {
+  margin-top: 22px;
+}
+
+.lw-home .audience-copy > p {
+  max-width: 540px;
+  margin-top: 14px;
+  color: var(--ink-2);
+  font-size: 18px;
+  line-height: 1.65;
+}
+
+.lw-home .audience-points {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 24px;
+  list-style: none;
+}
+
+.lw-home .audience-points li {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 7px 12px 7px 10px;
+  border: 1px solid color-mix(in srgb, var(--t) 18%, transparent);
+  border-radius: 999px;
+  background: var(--surface);
+  color: var(--ink);
+  font-size: 13.5px;
+  font-weight: 600;
+}
+
+.lw-home .audience-points svg {
+  width: 17px;
+  height: 17px;
+  color: var(--t);
+}
+
+.lw-home .audience-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px 20px;
+  margin-top: 32px;
+}
+
+.lw-home .audience-actions .text-link {
+  margin-top: 0;
+}
+
+.lw-home .audience-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 13px 20px;
+  border-radius: 14px;
+  background: var(--t);
+  color: white;
+  font-size: 15.5px;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.lw-home .tone-mango .audience-button,
+.lw-home .tone-mango .audience-icon {
+  background: var(--mango);
+  color: #2a1a03;
+}
+
+.dark .lw-home .audience-button {
+  color: #0f141c;
+}
+
+.lw-home .audience-button svg {
+  width: 18px;
+  height: 18px;
+  stroke-width: 2.2;
+  transition: transform 180ms ease;
+}
+
+.lw-home .audience-button:hover {
+  filter: brightness(1.08);
+  transform: translateY(-1px);
+}
+
+.lw-home .audience-button:hover svg {
+  transform: translateX(3px);
+}
+
+/* How locals earn: a real sequence, so it is numbered. */
+.lw-home .earn-steps {
+  position: relative;
+  display: grid;
+  gap: 14px;
+  list-style: none;
+}
+
+.lw-home .earn-steps::before {
+  content: "";
+  position: absolute;
+  top: 40px;
+  bottom: 40px;
+  left: 47px;
+  border-left: 2px dashed color-mix(in srgb, var(--t) 45%, transparent);
+}
+
+.lw-home .earn-steps li {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  gap: 18px;
+  padding: 20px 22px;
+  border: 1px solid var(--line);
+  border-radius: 20px;
+  background: var(--surface);
+  box-shadow: var(--shadow-card);
+}
+
+.lw-home .earn-icon {
+  display: grid;
+  width: 52px;
+  height: 52px;
+  flex: none;
+  place-items: center;
+  border-radius: 16px;
+  background: var(--t-soft);
+  color: var(--t);
+}
+
+.lw-home .earn-icon svg {
+  width: 28px;
+  height: 28px;
+}
+
+.lw-home .earn-steps li > div {
+  display: grid;
+  gap: 2px;
+}
+
+.lw-home .earn-count {
+  color: var(--t);
+  font-size: 12.5px;
+  font-weight: 700;
+}
+
+.lw-home .earn-steps strong {
+  color: var(--ink);
+  font-size: 17px;
+  font-weight: 700;
+}
+
+.lw-home .earn-steps p {
+  color: var(--ink-2);
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+.lw-home .places-block {
+  width: min(100%, 1180px);
+  margin: 104px auto 0;
+}
+
+.lw-home .places-block .place-grid {
+  margin-top: 40px;
+}
+
+.lw-home .contact .section-heading {
+  margin-bottom: 40px;
+}
+
+/* ---------- tablet ---------- */
+
+@media (max-width: 1100px) {
+  .lw-home .about-grid {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+
+  .lw-home .planner form {
+    flex-wrap: wrap;
+  }
+
+  .lw-home .field {
+    flex-basis: 30%;
+  }
+
+  .lw-home .stay-field {
+    flex-basis: 100%;
+  }
+
+  .lw-home .stay-field + .field::before {
+    display: none;
+  }
+
+  .lw-home .plan-button {
+    flex: 1 1 100%;
+    margin: 8px 0 0;
+  }
+
+  .lw-home .audience-inner {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+
+  .lw-home .place-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .lw-home .contact-route {
+    right: -40px;
+  }
+}
+
+/* ---------- phone ---------- */
+
+@media (max-width: 760px) {
+  .lw-home .site-header {
+    height: 60px;
+    padding-inline: 14px;
+  }
+
+  .lw-home .brand-word {
+    font-size: 26px;
+  }
+
+  .lw-home .brand-mark {
+    width: 46px;
+    height: 31px;
+  }
+
+  .lw-home .desktop-nav {
+    display: none;
+  }
+
+  .lw-home .menu-button {
+    display: grid;
+  }
+
+  .lw-home .hero {
+    height: 560px;
+  }
+
+  .lw-home .hero-photo {
+    object-position: 52% 70%;
+  }
+
+  .lw-home .hero-copy {
+    padding: 44px 20px 0;
+  }
+
+  .lw-home .hero-copy h1 {
+    font-size: clamp(46px, 14vw, 64px);
+    line-height: 0.98;
+  }
+
+  .lw-home .hero-copy p {
+    margin-top: 20px;
+    font-size: 16.5px;
+    line-height: 1.5;
+  }
+
+  .lw-home .planner {
+    width: calc(100% - 28px);
+    margin-top: -72px;
+  }
+
+  .lw-home .field {
+    flex-basis: 50%;
+    padding: 10px 14px;
+  }
+
+  .lw-home .stay-field,
+  .lw-home .travelers-field {
+    flex-basis: 100%;
+  }
+
+  .lw-home .travelers-field::before {
+    display: none;
+  }
+
+  .lw-home .form-status {
+    text-align: center;
+  }
+
+  .lw-home .how-it-works {
+    padding: 72px 22px 80px;
+  }
+
+  .lw-home .steps {
+    margin-top: 48px;
+    grid-template-columns: 1fr;
+    row-gap: 52px;
+  }
+
+  .lw-home .step-connector {
+    display: none;
+  }
+
+  .lw-home .step h4 {
+    margin-top: 22px;
+  }
+
+  .lw-home .day-card header {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 20px 18px 16px;
+  }
+
+  .lw-home .timeline {
+    padding: 10px 14px 18px;
+  }
+
+  .lw-home .stop {
+    grid-template-columns: 62px 34px 1fr;
+    gap: 10px;
+  }
+
+  .lw-home .stop-icon {
+    width: 34px;
+    height: 34px;
+  }
+
+  .lw-home .leg {
+    margin-left: 88px;
+    padding-left: 18px;
+  }
+
+  .lw-home .audience-section {
+    padding: 72px 18px;
+  }
+
+  .lw-home .audience-copy > p {
+    font-size: 16.5px;
+  }
+
+  .lw-home .audience-actions,
+  .lw-home .audience-button {
+    width: 100%;
+  }
+
+  .lw-home .audience-button {
+    justify-content: center;
+  }
+
+  .lw-home .earn-steps li {
+    padding: 16px;
+    gap: 14px;
+  }
+
+  .lw-home .earn-steps::before {
+    left: 41px;
+  }
+
+  .lw-home .places-block {
+    margin-top: 72px;
+  }
+
+  .lw-home .about .sub-heading {
+    margin-top: 48px;
+  }
+
+  .lw-home .values {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .lw-home .about > .sub-heading {
+    padding-top: 48px;
+  }
+
+  .lw-home .place-grid {
+    margin-top: 36px;
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .lw-home .contact {
+    padding: 72px 16px;
+  }
+
+  .lw-home .contact-band {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 32px 24px;
+  }
+
+  .lw-home .contact-button {
+    width: 100%;
+  }
+
+  .lw-home .contact-route {
+    right: -160px;
+    bottom: -60px;
+  }
+
+  .lw-home .footer-inner {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+/* Suggestions under the home page stay box */
+.lw-home .stay-field { position: relative; }
+.lw-home .stay-options {
+  position: absolute;
+  top: calc(100% + 10px);
+  left: 0;
+  z-index: 30;
+  width: max(100%, 320px);
+  margin: 0;
+  padding: 6px;
+  list-style: none;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  background: var(--surface);
+  box-shadow: 0 12px 32px rgb(0 0 0 / 0.16);
+}
+.lw-home .stay-options li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  font-size: 15px;
+  cursor: pointer;
+}
+.lw-home .stay-options li.active,
+.lw-home .stay-options li:hover { background: var(--lake-soft, rgb(22 78 132 / 0.08)); }
+.lw-home .stay-options strong { font-weight: 600; color: var(--ink); }
+.lw-home .stay-options em { font-style: normal; font-size: 13px; color: var(--muted); white-space: nowrap; }

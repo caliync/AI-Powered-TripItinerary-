@@ -1,0 +1,44 @@
+/* New look (Nov 2026): a clean travel-site base. White pages, one deep lake
+   blue for structure and actions, and a sunny mango kept for the route
+   itself. Soft is the pale band between sections. */
+:root {
+  --bg: 255 255 255;
+  --soft: 244 247 251;
+  --surface: 255 255 255;
+  --ink: 20 30 46;
+  --muted: 86 99 118;
+  --line: 224 230 238;
+  --lake: 22 78 132;
+  --lake-deep: 14 52 92;
+  --lake-soft: 230 239 248;
+  --mango: 240 158 48;
+  --moss: 31 117 72;
+  --caution: 146 92 8;
+  --danger: 190 38 30;
+  --shadow: 0 10px 30px -12px rgb(16 32 56 / 0.18), 0 2px 6px rgb(16 32 56 / 0.06);
+  color-scheme: light;
+}
+:root.dark {
+  --bg: 12 18 28;
+  --soft: 17 25 38;
+  --surface: 23 32 47;
+  --ink: 234 239 246;
+  --muted: 156 170 190;
+  --line: 42 54 72;
+  --lake: 128 178 232;
+  --lake-deep: 168 202 240;
+  --lake-soft: 29 45 68;
+  --mango: 246 184 92;
+  --moss: 120 200 148;
+  --caution: 236 186 98;
+  --danger: 250 120 110;
+  --shadow: 0 12px 32px -12px rgb(0 0 0 / 0.6), 0 2px 6px rgb(0 0 0 / 0.3);
+  color-scheme: dark;
+}
+html { background: rgb(var(--bg)); color: rgb(var(--ink)); }
+body { -webkit-font-smoothing: antialiased; }
+:focus-visible { outline: 3px solid rgb(var(--mango)); outline-offset: 2px; border-radius: 8px; }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+}
+.leaflet-container.leaflet-container { background: rgb(var(--lake-soft)); font: inherit; }

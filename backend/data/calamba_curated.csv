@@ -1,0 +1,29 @@
+place_id,name,type,outdoor,details,wheelchair_access,lat,lng,scope,alli_decision,alli_notes,osm_ref,osm_match
+CAL-001,Rizal Shrine (Museo ni Jose Rizal),landmark,N,"Restored colonial house, Rizal's birthplace, now a museum",unknown,14.2134403,121.1667919,In Calamba,Approve,,way/93587272,High
+CAL-002,St. John the Baptist Parish Church,landmark,N,19th-century Baroque church next to the Rizal Shrine; where Rizal was baptized,unknown,14.2134337,121.1674963,In Calamba,Approve,,way/87216378,High
+CAL-003,Rizal Monument and The Plaza,landmark,Y,"Park with the Rizal statue, opened 2011",unknown,14.195874,121.1597906,In Calamba,Approve,,way/409890076,High
+CAL-004,Giant Clay Pot (Calambanga),landmark,Y,12 m clay pot built in 1937; the city's symbol,unknown,14.2141971,121.1670752,In Calamba,,,way/746912736,High
+CAL-005,San Pedro Calungsod Parish Church,landmark,N,Parish church,unknown,14.1910308,121.1585436,In Calamba,,,way/779540829,High
+CAL-006,Rockpoint,parks,Y,Granite rock formation; no access details given,unknown,14.1776915,121.1804914,In Calamba,,"Terrain unknown, check before offering to wheelchair users",node/340362617,Check
+CAL-007,Petty John Studio,other,N,Pottery studio run by two potters,unknown,,,In Calamba,,,,Not found
+CAL-008,La Vista Pansol,hot_springs,Y,"About 7,000 sq m family resort: warm spring pools, water slides, kids' pool, picnic huts, zip lines",limited,14.1797246,121.1909036,In Calamba,,,way/170221744,High
+CAL-009,88 Hot Spring Resort,hot_springs,Y,Ten outdoor pools at different temperatures and a man-made lake; water said to come from Mt. Makiling,unknown,14.1716907,121.2009642,In Calamba,,,node/1543840565,Check
+CAL-010,Sol Y Viento,hot_springs,Y,"Resort with restaurant, accommodations, pools and jacuzzis",unknown,14.1728112,121.1785112,In Calamba,,,relation/13509285,High
+CAL-011,Mt. Makiling Forest Reserve,parks,Y,"Dormant volcano and forest reserve; hiking, bird watching, camping",unknown,14.1377739,121.2124223,In Calamba,,Hiking trails: likely not suitable for wheelchair or minimal-walking users,way/542884941,Check
+CAL-012,Pook ni Maria Makiling,parks,Y,Recreation park; hiking and picnics,unknown,14.1551327,121.2261484,In Calamba,,,way/237616475,Check
+CAL-013,Calamba Baywalk,parks,Y,Lakeside walk and ferry jump-off for the Laguna Lake island; food stalls; free,unknown,14.2123167,121.18708,In Calamba,,,way/530235297,High
+CAL-014,Wonder Island,other,Y,Island with jet-ski and boat activities,unknown,14.2189267,121.2035352,In Calamba,,Boat access: check for wheelchair users,way/530228631,High
+CAL-015,Republ1c Wakepark,other,Y,Wakeboarding park,unknown,14.1985545,121.0795728,In Calamba,,Far from town center; Nuvali area,way/281980715,High
+CAL-016,Bulalo sa Banga,traditional_food,N,Local beef-shank soup restaurant,unknown,,,In Calamba,,,,Not found
+CAL-017,Tuding's Original Porkchop,traditional_food,N,Porkchop restaurant,unknown,14.1953305,121.1432506,In Calamba,,,way/109338570,Confirmed
+CAL-018,Buddy's - Calamba,traditional_food,N,"Fiesta-style Filipino food; chain from Lucban, Quezon",unknown,14.1974581,121.1619593,In Calamba,,,node/14142163478,Check
+CAL-019,Carmi's Kitchen,other,N,Restaurant; cuisine not stated on the source,unknown,,,In Calamba,,Cuisine unknown,,Not found
+CAL-020,PAULS dining + kitchen,other,N,Restaurant; cuisine not stated on the source,unknown,,,In Calamba,,Cuisine unknown,,Not found
+CAL-021,Calamba City Public Market,other,N,Public market,unknown,14.2104647,121.1644687,In Calamba,,,way/107831310,High
+CAL-022,Samaral Seafood Restaurant,seafood,N,Filipino seafood in bamboo and nipa cottages,unknown,14.2013138,121.1595522,In Calamba,,,way/530206615,High
+CAL-023,SM City Calamba,malls,N,Mall with transport terminal,unknown,14.2030913,121.1549949,In Calamba,,,way/54360281,High
+CAL-024,Walter Mart Calamba,malls,N,Mall,unknown,,,In Calamba,,,,Not found
+CAL-025,Walter Mart Makiling,malls,N,"Mall with fast food, department store and supermarket",unknown,14.1603758,121.1391673,In Calamba,,,way/132503371,High
+CAL-026,Novo Department Store - Calamba,malls,N,Department store,unknown,,,In Calamba,,,,Not found
+CAL-027,Lake Caliraya,other,Y,"Jet skiing, kayaking, wakeboarding, fishing, camping",unknown,14.2964633,121.5115348,Unclear,,The page lists it under Calamba but gives no location,relation/1622400,High
+CAL-028,Pagsanjan Falls,waterfalls,Y,Reached by river boat; swimming under the falls,unknown,14.2625628,121.4999861,Outside Calamba,,Only waterfall found so far; outside the 15 km stop range,node/1332879056,High

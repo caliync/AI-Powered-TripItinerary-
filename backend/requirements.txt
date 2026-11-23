@@ -1,0 +1,5 @@
+fastapi==0.115.5
+uvicorn[standard]==0.32.1
+httpx==0.28.1
+pydantic==2.13.5
+tzdata==2025.2  # Windows has no time zone list; Python needs this for Asia/Manila
